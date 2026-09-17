@@ -1,0 +1,21 @@
+node_modules
+dist
+
+# Your colony: which repo sits on which plot, and what you archived. Holds the names and
+# paths of the repos you work in, so it stays out of the repository.
+data/*.json
+data/*.tmp
+data/.drive-token
+
+# Per-machine Claude Code permissions — personal paths live in here.
+.claude/settings.local.json
+
+# Raw asset packs. The built glbs in public/assets are checked in instead — see the README
+# under "Where the art comes from" for how to re-fetch these if you need to rebuild.
+assets-src
+
+.DS_Store
+*.log
+
+# Local capture output — not part of the project.
+recordings

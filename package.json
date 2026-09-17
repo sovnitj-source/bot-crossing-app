@@ -1,0 +1,32 @@
+{
+  "name": "bot-crossing-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "os": [
+    "darwin",
+    "win32",
+    "linux"
+  ],
+  "scripts": {
+    "dev": "npm run assets --silent && vite",
+    "build": "npm run assets --silent && vite build",
+    "start": "vite build && node server/serve.mjs",
+    "serve": "node server/serve.mjs",
+    "assets": "node tools/build-assets.mjs",
+    "test": "node --test \"test/**/*.test.mjs\""
+  },
+  "dependencies": {
+    "@mdi/js": "^7.4.47",
+    "three": "^0.185.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "^4.4.2",
+    "@gltf-transform/functions": "^4.4.2",
+    "vite": "^7.1.0"
+  }
+}
