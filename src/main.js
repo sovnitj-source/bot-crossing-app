@@ -20,6 +20,30 @@ import {
 import { hideProject, hiddenCatalog, unhideProject } from './game/hidden-projects.js'
 
 /**
+ * A visible label for the public Vercel deployment only. It reads real thread data from a real
+ * disk everywhere else it runs — including a clone of this exact repo on your own machine —
+ * so this must never fire there. Gated on the one thing that is actually true only of that one
+ * deployment: its hostname.
+ */
+function showDemoBannerIfHosted() {
+  if (!/\.vercel\.app$/.test(location.hostname)) return
+  const bar = document.createElement('div')
+  bar.setAttribute('role', 'status')
+  bar.style.cssText = [
+    'position:fixed', 'top:0', 'left:0', 'right:0', 'z-index:9999',
+    'display:flex', 'align-items:center', 'justify-content:center', 'gap:10px',
+    'padding:9px 16px', 'font:500 13px ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif',
+    'background:#c96442', 'color:#0a0b0f', 'text-align:center',
+  ].join(';')
+  bar.innerHTML =
+    '<span>You’re viewing a live demo with sample threads — not real agent sessions.</span>' +
+    '<a href="https://github.com/sovnitj-source/bot-crossing-app" target="_blank" rel="noopener" ' +
+    'style="color:#0a0b0f;font-weight:700;text-decoration:underline;white-space:nowrap">Clone it and run your own →</a>'
+  document.body.prepend(bar)
+}
+showDemoBannerIfHosted()
+
+/**
  * Boot and the outer game loop.
  *
  * The one interesting piece of orchestration here is the archive round trip. The harness
